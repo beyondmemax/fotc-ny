@@ -4113,8 +4113,9 @@ export default function App() {
 
   const handleLogin=ud=>{setUser(ud);setDarkMode(!LIGHT_ROLES.includes(ud.role));setTab("home");setNavKey(k=>k+1);};
   const handleLogout=async()=>{
-    if (user?.uid) await set(ref(rtdb,`presence/${user.uid}`),{online:false,lastSeen:serverTimestamp()});
-    await signOut(auth);setUser(null);setDarkMode(false);setTab("home");setShowProfile(false);setSelectedAchiever(null);setSelectedAchieverId(null);setSelectedAchieverName(null);setNavKey(k=>k+1);
+    try { if (user?.uid) await set(ref(rtdb,`presence/${user.uid}`),{online:false,lastSeen:serverTimestamp()}); } catch(e){ console.warn("presence update failed",e); }
+    try { await signOut(auth); } catch(e){ console.warn("signOut failed",e); }
+    setUser(null);setDarkMode(false);setTab("home");setShowProfile(false);setSelectedAchiever(null);setSelectedAchieverId(null);setSelectedAchieverName(null);setNavKey(k=>k+1);
   };
   const t={...getTheme(darkMode),textMid:darkMode?"#A0A0C0":"#4A5568"};
 
