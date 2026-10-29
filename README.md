@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# FOTC NY
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**A mentorship tracking app built for Friends of the Children New York.**
 
-## Available Scripts
+FOTC NY helps mentors, the youth they work with (Achievers), parents and caregivers, and supervisors stay connected around the same goals. Mentors log outings, assign and confirm goals, and track progress across the four Friends of the Children focus areas. Achievers see their own progress in a game-style dashboard. Supervisors get an overview of everything happening across their mentors.
 
-In the project directory, you can run:
+🔗 **Live app:** [fotc-ny.web.app](https://fotc-ny.web.app)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Who it's for
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Role | What they can do |
+|---|---|
+| **Mentor** | Log outing sessions, assign goals and season goals, confirm proof submitted by Achievers, chat with Achievers, view progress reports |
+| **Achiever** (mentee) | See XP, level and goal progress, submit photo proof for goals, chat with their mentor |
+| **Parent / Caregiver** | Confirm outings and stay informed about their child's sessions |
+| **Supervisor** | Post announcements to mentors and view program-wide stats |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+### Session journal
+- Session date, time and Achiever are filled in automatically
+- **Individual** or **Group** outings, with a roster picker for group sessions
+- Log **external attendees** (siblings, family, friends) and **multiple locations**
+- Session mood, summary, focus area tags and notes for parents
+- Journal cards show who joined, where you went and which focus areas were covered
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Goals and season goals
+- Mentors assign goals with due dates through a custom calendar picker
+- Achievers submit **photo proof**, which mentors review and confirm
+- **Season goals** (Summer, Fall, Spring) set targets for each focus area. Progress updates automatically from logged sessions and goals.
+- When a season goal ends, the mentor chooses whether to **keep it for their records** or **remove it and start fresh**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Four focus areas
+Everything is tagged by the Friends of the Children focus areas:
+- 🔵 **LE**: Learning & Education
+- 🔴 **HWB**: Health & Well-Being
+- 🟢 **CIB**: Community & Identity Building
+- 🟣 **SEL**: Social-Emotional Learning
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Progress reports
+- Circular progress rings for each focus area on every Achiever's card
+- Tap into any area to see the sessions and goals behind it
+- Achiever dashboard with XP, levels and goal completion
 
-### `npm run eject`
+### Real-time chat
+- One-on-one messaging between mentors and Achievers
+- Double-tap to ❤️ a message, press and hold to reply
+- Send photos from your camera or gallery, with a full-screen viewer that supports swipe-to-close
+- Live **online / offline** status for each user
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Everything else
+- Supervisor **announcements** that show up live on mentors' home screens
+- Profile pictures (photos are compressed in the browser before they're saved)
+- **Dark and light mode**
+- Installable as a **Progressive Web App (PWA)** on iPhone and Android
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Tech stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **React**: the whole front end
+- **Firebase Authentication**: role-based accounts with email verification
+- **Cloud Firestore**: users, sessions, goals, messages, announcements, season goals
+- **Firebase Realtime Database**: live online/offline presence
+- **Firebase Hosting**: deployment
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project history
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was built **entirely on my MacBook**. For most of its development it lived only in a local folder: I edited it there and deployed straight to Firebase Hosting from my terminal, with no version control.
 
-### Code Splitting
+I recently **moved it over to GitHub** and now work on it in **GitHub Codespaces**. Because of that, the commit history here starts at the migration and doesn't show the months of work that came before it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Running it locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/beyondmemax/fotc-ny.git
+cd fotc-ny
+npm install
+npm start
+```
 
-### Making a Progressive Web App
+You'll need your own Firebase project with **Authentication**, **Firestore** and **Realtime Database** turned on. Put your project's config in `src/firebase.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Deploying
 
-### Advanced Configuration
+```bash
+npm install -g firebase-tools
+firebase login
+npm run build && firebase deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [ ] One-click quarterly report generation for mentors
+- [ ] AI-suggested focus area tags from session notes
+- [ ] Automated text confirmations for parents
+- [ ] Audio reflections and workout logs for Achievers
+- [ ] Activity streaks on the Achiever dashboard
+- [ ] Onboarding walkthrough for new mentors
+- [ ] Salesforce integration
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+
+**Maximus Bhuiyan**: design and development
+
+Built for Friends of the Children New York.
